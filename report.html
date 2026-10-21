@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8ff;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .back-btn {
+            background: white;
+            color: #0077b6;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #005f8f;
+            color: white;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+        .title {
+            text-align: center;
+            color: #0077b6;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .report-card,
+        .summary {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e1effa;
+            text-align: center;
+        }
+        .icon {
+            font-size: 45px;
+        }
+        .report-card h2,
+        .summary h2 {
+            color: #0077b6;
+            margin-top: 5px;
+        }
+        .report-card p {
+            color: #555;
+            line-height: 1.5;
+            min-height: 45px;
+        }
+        .report-btn {
+            display: inline-block;
+            background: #0077b6;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .report-btn:hover {
+            background: #005f8f;
+        }
+        .summary {
+            margin-top: 30px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .summary-box {
+            background: #f4f9fd;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddecfa;
+        }
+        .summary-box h3 {
+            color: #0077b6;
+            margin: 0;
+            font-size: 15px;
+        }
+        .summary-box p {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 8px 0 0;
+            color: #023e8a;
+        }
+        @media (max-width: 750px) {
+            .report-grid,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                padding: 15px;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <span class="user-tag current-user-badge">Administrator</span>
+        <a href="admin.html" class="back-btn dynamic-back">
+            ← Back to Dashboard
+        </a>
+    </div>
+</header>
+<main class="container">
+    <h1 class="title">Hospital Reports & Analytics</h1>
+    <div class="report-grid">
+        <!-- Monthly Report -->
+        <div class="report-card">
+            <div class="icon">📊</div>
+            <h2>Monthly Report</h2>
+            <p>
+                Monthly breakdown of admissions, patient appointments, and departmental activities.
+            </p>
+            <a href="monthly-report.html" class="report-btn">
+                View Monthly Report
+            </a>
+        </div>
+        <!-- Revenue Report -->
+        <div class="report-card">
+            <div class="icon">💰</div>
+            <h2>Revenue Report</h2>
+            <p>
+                Detailed audit of billings generated, collected payments, and pending dues.
+            </p>
+            <a href="revenue-report.html" class="report-btn">
+                View Revenue Report
+            </a>
+        </div>
+        <!-- Department Report -->
+        <div class="report-card">
+            <div class="icon">🏥</div>
+            <h2>Department Report</h2>
+            <p>
+                Specialty department metrics, active medical staff rosters, and patient distributions.
+            </p>
+            <a href="department-report.html" class="report-btn">
+                View Department Report
+            </a>
+        </div>
+        <!-- Performance Report -->
+        <div class="report-card">
+            <div class="icon">📈</div>
+            <h2>Performance Report</h2>
+            <p>
+                Hospital service KPIs, doctor availability rates, and overall operational efficiency.
+            </p>
+            <a href="performance-report.html" class="report-btn">
+                View Performance Report
+            </a>
+        </div>
+    </div>
+    <!-- Hospital Summary -->
+    <section class="summary">
+        <h2>Live Hospital Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-box">
+                <h3>Total Patients</h3>
+                <p id="reportTotalPatients">0</p>
+            </div>
+            <div class="summary-box">
+                <h3>Total Doctors</h3>
+                <p id="reportTotalDoctors">0</p>
+            </div>
+            <div class="summary-box">
+                <h3>Appointments</h3>
+                <p id="reportTotalAppointments">0</p>
+            </div>
+            <div class="summary-box">
+                <h3>Revenue Collected</h3>
+                <p id="reportTotalRevenue">₹0</p>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

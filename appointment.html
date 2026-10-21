@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:#f1f8ff;
+        }
+        .header{
+            background:#0077b6;
+            color:white;
+            padding:18px 30px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .header h2{margin:0}
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .back-btn{
+            background:white;
+            color:#0077b6;
+            padding:8px 16px;
+            text-decoration:none;
+            border-radius:6px;
+            font-weight:bold;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #005f8f;
+            color: white;
+        }
+        .container{
+            width:90%;
+            max-width:1050px;
+            margin:30px auto;
+        }
+        .title{
+            text-align:center;
+            color:#0077b6;
+            margin-top: 0;
+        }
+        .form-box,
+        .table-box{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            box-shadow:0 4px 15px rgba(0,0,0,.08);
+            border: 1px solid #e1effa;
+        }
+        .table-box{
+            margin-top:30px;
+            overflow-x:auto;
+        }
+        .table-box h2 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .form-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+        .form-group{
+            display:flex;
+            flex-direction:column;
+        }
+        label{
+            font-weight:bold;
+            margin-bottom:7px;
+            color: #333;
+        }
+        input, select, textarea{
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            font-size:14px;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+        textarea{
+            height:80px;
+            resize:none;
+        }
+        .full{
+            grid-column:span 2;
+        }
+        .buttons{
+            margin-top:20px;
+            text-align:center;
+        }
+        button{
+            padding:11px 22px;
+            border:0;
+            border-radius:6px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+        .save-btn{
+            background:#0077b6;
+            color:white;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #005f8f;
+        }
+        .clear-btn{
+            background:#e8eef2;
+            color:#333;
+            margin-left:8px;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #d8e2e8;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+        th{
+            background:#0077b6;
+            color:white;
+            padding:12px;
+            text-align: left;
+        }
+        td{
+            padding:12px;
+            text-align:left;
+            border-bottom:1px solid #ddd;
+        }
+        .delete-btn {
+            background: #ffe9e9;
+            color: #d62828;
+            border: 1px solid #ffccd5;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #d62828;
+            color: white;
+        }
+        @media(max-width:700px){
+            .form-grid{
+                grid-template-columns:1fr;
+            }
+            .full{
+                grid-column:span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <span class="user-tag current-user-badge">Staff</span>
+        <a href="admin.html" class="back-btn dynamic-back">← Back to Dashboard</a>
+    </div>
+</header>
+<main class="container">
+    <h1 class="title">Appointment Management</h1>
+    <div class="form-box">
+        <form id="appointmentForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Appointment ID (Optional)</label>
+                    <input type="text" id="appointmentId"
+                           placeholder="Auto-generated if left blank (e.g. A005)">
+                </div>
+                <div class="form-group">
+                    <label>Patient ID (Optional)</label>
+                    <input type="text" id="appointmentPatientId"
+                           placeholder="Optional: Enter ID (e.g. P001) or leave blank to auto-create">
+                </div>
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text" id="appointmentPatientName"
+                           placeholder="Enter Patient Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="appointmentPhone"
+                           placeholder="Enter 10-digit Phone Number"
+                           maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" id="appointmentDoctor"
+                           list="doctorsList"
+                           placeholder="Select or enter doctor name" required>
+                    <datalist id="doctorsList">
+                        <option value="Dr. Rahul Sharma - Cardiologist">
+                        <option value="Dr. Priya Singh - General Physician">
+                        <option value="Dr. Amit Kumar - Orthopedic">
+                        <option value="Dr. Sunita Gupta - Dermatologist">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+                <div class="form-group full">
+                    <label>Appointment Time</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+                <div class="form-group full">
+                    <label>Symptoms / Problem</label>
+                    <textarea id="symptoms"
+                              placeholder="Enter patient symptoms or reason for visit"
+                              required></textarea>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="save-btn">
+                    Save Appointment
+                </button>
+                <button type="button"
+                        class="clear-btn"
+                        onclick="clearForm()">
+                    Clear Form
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="table-box">
+        <h2>Appointment Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Symptoms</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentTable"></tbody>
+        </table>
+    </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

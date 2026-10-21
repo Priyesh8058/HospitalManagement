@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:#f1f8ff;
+        }
+        .header{
+            background:#0077b6;
+            color:white;
+            padding:18px 30px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .header h2{margin:0}
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .logout-btn{
+            background:white;
+            color:#0077b6;
+            border:0;
+            padding:10px 18px;
+            border-radius:6px;
+            cursor:pointer;
+            font-weight:bold;
+            transition: background 0.2s;
+        }
+        .logout-btn:hover {
+            background: #e3f2fd;
+        }
+        .container{
+            width:90%;
+            max-width:1100px;
+            margin:30px auto;
+        }
+        .welcome{
+            text-align:center;
+            margin-bottom:30px;
+        }
+        .welcome h1,
+        .card h2,
+        .appointment-box h2{
+            color:#0077b6;
+            margin-top: 0;
+        }
+        .welcome p,
+        .card p{
+            color:#555;
+        }
+        .card-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:25px;
+        }
+        .card,
+        .appointment-box{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            box-shadow:0 4px 15px rgba(0,0,0,.08);
+            border: 1px solid #e1effa;
+            text-align:center;
+        }
+        .icon{font-size:45px}
+        .btn{
+            display:inline-block;
+            background:#0077b6;
+            color:white;
+            text-decoration:none;
+            padding:10px 20px;
+            border-radius:6px;
+            margin-top:10px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #005f8f;
+        }
+        .appointment-box{
+            margin-top:30px;
+            text-align:left;
+            overflow-x:auto;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+        th{
+            background:#0077b6;
+            color:white;
+            padding:12px;
+            text-align: left;
+        }
+        td{
+            padding:12px;
+            text-align:left;
+            border-bottom:1px solid #ddd;
+        }
+        @media(max-width:800px){
+            .card-grid{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <span class="user-tag current-user-badge">Doctor</span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+</header>
+<main class="container">
+    <div class="welcome">
+        <h1>Doctor Dashboard</h1>
+        <p>Welcome! Review your schedule, access patient records, and view hospital analytics.</p>
+    </div>
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon">👨‍⚕️</div>
+            <h2>Patients</h2>
+            <p>View patient history and medical details.</p>
+            <a href="patient.html" class="btn">View Patients</a>
+        </div>
+        <div class="card">
+            <div class="icon">📅</div>
+            <h2>Appointments</h2>
+            <p>View, schedule, and manage appointments.</p>
+            <a href="appointment.html" class="btn">View Appointments</a>
+        </div>
+        <div class="card">
+            <div class="icon">📊</div>
+            <h2>Reports</h2>
+            <p>Access department and hospital performance reports.</p>
+            <a href="report.html" class="btn">View Reports</a>
+        </div>
+    </div>
+    <section class="appointment-box">
+        <h2>Today's Appointments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Symptoms</th>
+                </tr>
+            </thead>
+            <tbody id="doctorAppointmentsTable">
+                <!-- Populated dynamically via script.js -->
+            </tbody>
+        </table>
+    </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Hospital - Quality Healthcare</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        🏥 <b>Medicare</b> Hospital
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#doctors">Doctors</a>
+        <a href="#book-appointment" class="book-nav-btn">📅 Book Appointment</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="login-btn">Staff Login</a>
+    </nav>
+</header>
+<section class="hero">
+    <div class="hero-content">
+        <p class="small-title">
+            WELCOME TO MEDICARE HOSPITAL
+        </p>
+        <h1>
+            Quality Healthcare<br>
+            For A Better Life
+        </h1>
+        <p>
+            Providing trusted healthcare services with experienced
+            doctors, modern facilities and patient-focused care. No login required to schedule your appointment!
+        </p>
+        <div class="hero-buttons">
+            <a href="#book-appointment" class="primary-btn">
+                📅 Book Appointment Now
+            </a>
+            <a href="#services" class="secondary-btn">
+                Our Services
+            </a>
+        </div>
+    </div>
+</section>
+<section class="about" id="about">
+    <div class="about-image">
+        <div class="hospital-icon">🏥</div>
+    </div>
+    <div class="about-text">
+        <p class="section-title">
+            ABOUT OUR HOSPITAL
+        </p>
+        <h2>
+            Healthcare You Can Trust
+        </h2>
+        <p>
+            Medicare Hospital Management System is designed to manage
+            hospital activities in an easy and organized way.
+        </p>
+        <p>
+            Our medical specialists are ready to consult with you. You can directly reserve your consultation slot online without any complicated signups or passwords.
+        </p>
+        <a href="#book-appointment" class="primary-btn">
+            Book Appointment
+        </a>
+    </div>
+</section>
+<section class="services" id="services">
+    <p class="section-title">
+        OUR SERVICES
+    </p>
+    <h2>
+        Healthcare Services
+    </h2>
+    <div class="service-container">
+        <div class="service-card">
+            <div class="service-icon">
+                🩺
+            </div>
+            <h3>
+                Expert Doctors
+            </h3>
+            <p>
+                Experienced doctors are available for patient care
+                and consultation.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                ❤️
+            </div>
+            <h3>
+                Emergency Care
+            </h3>
+            <p>
+                Emergency services are available for urgent medical
+                situations.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                🧪
+            </div>
+            <h3>
+                Laboratory
+            </h3>
+            <p>
+                Laboratory services help in diagnosis and medical
+                testing.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                💊
+            </div>
+            <h3>
+                Pharmacy
+            </h3>
+            <p>
+                Medicines and pharmacy services are managed efficiently.
+            </p>
+        </div>
+    </div>
+</section>
+<section class="doctors" id="doctors">
+    <p class="section-title">
+        OUR DOCTORS
+    </p>
+    <h2>
+        Meet Our Specialists
+    </h2>
+    <div class="doctor-container">
+        <div class="doctor-card">
+            <div class="doctor-photo">
+                👨‍⚕️
+            </div>
+            <h3>
+                Dr. Rahul Sharma
+            </h3>
+            <p>
+                Cardiologist
+            </p>
+        </div>
+        <div class="doctor-card">
+            <div class="doctor-photo">
+                👩‍⚕️
+            </div>
+            <h3>
+                Dr. Priya Singh
+            </h3>
+            <p>
+                General Physician
+            </p>
+        </div>
+        <div class="doctor-card">
+            <div class="doctor-photo">
+                👨‍⚕️
+            </div>
+            <h3>
+                Dr. Amit Kumar
+            </h3>
+            <p>
+                Orthopedic Specialist
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Direct Public Appointment Booking Section (No Login Required) -->
+<section class="booking-section" id="book-appointment">
+    <p class="section-title">ONLINE CONSULTATION</p>
+    <h2>Book An Appointment</h2>
+    <p style="color: #666; max-width: 600px; margin: 0 auto 20px;">
+        Schedule your doctor visit directly. No account creation or login required — receive instant confirmation immediately!
+    </p>
+
+    <div class="booking-container">
+        <form id="publicBookingForm">
+            <div class="booking-form-grid">
+                <div class="booking-field">
+                    <label>Your Full Name *</label>
+                    <input type="text" id="pubPatientName" placeholder="e.g. Anjali Sharma" required>
+                </div>
+                <div class="booking-field">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="pubPhone" placeholder="e.g. 9876543210" maxlength="10" required>
+                </div>
+                <div class="booking-field">
+                    <label>Age (Optional)</label>
+                    <input type="number" id="pubAge" placeholder="e.g. 29" min="1" max="120">
+                </div>
+                <div class="booking-field">
+                    <label>Gender (Optional)</label>
+                    <select id="pubGender">
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="booking-field full">
+                    <label>Choose Specialist Doctor *</label>
+                    <select id="pubDoctor" required>
+                        <option value="">Select Doctor & Specialty</option>
+                        <option value="Dr. Rahul Sharma - Cardiologist (Cardiology)">Dr. Rahul Sharma - Cardiologist (Cardiology)</option>
+                        <option value="Dr. Priya Singh - General Physician (General Medicine)">Dr. Priya Singh - General Physician (General Medicine)</option>
+                        <option value="Dr. Amit Kumar - Orthopedic (Orthopedics)">Dr. Amit Kumar - Orthopedic (Orthopedics)</option>
+                        <option value="Dr. Sunita Gupta - Dermatologist (Dermatology)">Dr. Sunita Gupta - Dermatologist (Dermatology)</option>
+                    </select>
+                </div>
+                <div class="booking-field">
+                    <label>Preferred Date *</label>
+                    <input type="date" id="pubDate" required>
+                </div>
+                <div class="booking-field">
+                    <label>Preferred Time Slot *</label>
+                    <input type="time" id="pubTime" value="10:30" required>
+                </div>
+                <div class="booking-field full">
+                    <label>Symptoms or Reason for Consultation *</label>
+                    <textarea id="pubSymptoms" placeholder="Briefly describe your symptoms or reason for the visit (e.g. chest pain, viral fever, routine checkup)" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="booking-submit-btn">
+                ✅ Confirm & Book Appointment (No Login Required)
+            </button>
+        </form>
+
+        <!-- Instant Booking Confirmation Ticket -->
+        <div id="bookingConfirmationBox" class="booking-confirmation">
+            <div style="font-size: 48px; margin-bottom: 8px;">🎉</div>
+            <h3>Appointment Confirmed!</h3>
+            <p>Your appointment has been registered in Medicare Hospital. No login or verification is needed!</p>
+
+            <div class="ticket-details">
+                <div class="ticket-row">
+                    <span>Appointment ID:</span>
+                    <span class="ticket-id" id="confAppointmentId">A005</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Patient Name:</span>
+                    <strong id="confPatientName">Anjali Sharma</strong>
+                </div>
+                <div class="ticket-row">
+                    <span>Doctor / Department:</span>
+                    <span id="confDoctor">Dr. Priya Singh</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Date & Time:</span>
+                    <strong id="confDateTime">2026-10-22 at 10:30 AM</strong>
+                </div>
+                <div class="ticket-row">
+                    <span>Contact Phone:</span>
+                    <span id="confPhone">9876543210</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Status:</span>
+                    <span style="background: #e8f5e9; color: #2e7d32; padding: 2px 8px; border-radius: 4px; font-weight: bold;">Confirmed</span>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: #555;">
+                ℹ️ Please keep your <b>Appointment ID</b> handy when you visit Medicare Hospital. Please arrive 10 minutes prior to your consultation.
+            </p>
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" onclick="window.print()" class="primary-btn" style="border: none; cursor: pointer; padding: 10px 20px;">
+                    🖨️ Print Appointment Slip
+                </button>
+                <button type="button" onclick="bookAnotherAppointment()" class="secondary-btn" style="border: 1px solid #0077b6; cursor: pointer; padding: 10px 20px;">
+                    + Book Another Appointment
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <p class="section-title">
+        CONTACT US
+    </p>
+    <h2>
+        We Are Here For You
+    </h2>
+    <div class="contact-container">
+        <div>
+            <h3>
+                📍 Address
+            </h3>
+            <p>
+                New Delhi, India
+            </p>
+        </div>
+        <div>
+            <h3>
+                📞 Phone
+            </h3>
+            <p>
+                +91 9542654845
+            </p>
+        </div>
+        <div>
+            <h3>
+                ✉️ Email
+            </h3>
+            <p>
+                info@medicarehospital.com
+            </p>
+        </div>
+    </div>
+</section>
+<footer>
+    <h3>
+        🏥 Medicare Hospital
+    </h3>
+    <p>
+        Hospital Management System
+    </p>
+    <p>
+        © 2026 Medicare Hospital. All Rights Reserved.
+    </p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

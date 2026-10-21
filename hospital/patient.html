@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Panel</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .patient-panel {
+            width: 500px;
+            margin: 40px auto 20px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .patient-panel h1 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            padding: 12px 30px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #b71c1c;
+            transform: scale(1.05);
+        }
+
+        .container {
+            width: 400px;
+            margin: 30px auto 50px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h1 {
+            text-align: center;
+            color: #0077b6;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 2px solid #bde0fe;
+            border-radius: 6px;
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background: #023e8a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Patient Panel -->
+    <div class="patient-panel">
+        <h1>Welcome to Patient Panel</h1>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <!-- Patient Management -->
+    <div class="container">
+        <h1>Patient Registration</h1>
+        <form action="PatientServlet" method="post">
+            <label>Patient ID</label>
+            <input type="number" name="patient_id" required>
+            <label>Name</label>
+            <input type="text" name="name" required>
+            <label>Age</label>
+            <input type="number" name="age" required>
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label>Phone Number</label>
+            <input type="tel" name="phone" required>
+            <label>Address</label>
+            <textarea name="address" placeholder="Enter Address"></textarea>
+            <label>Disease</label>
+            <input type="text" name="disease" placeholder="Enter Disease">
+            <button type="submit">Register Patient</button>
+        </form>
+    </div>
+    <script>
+        function logout() {
+            localStorage.removeItem("role");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

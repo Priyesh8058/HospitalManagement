@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Report - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8ff;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h2 { margin: 0; }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-header {
+            background: white;
+            color: #0077b6;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-header:hover {
+            background: #e3f2fd;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .report-header h1 {
+            color: #0077b6;
+            margin: 0;
+        }
+        .report-header p {
+            color: #666;
+            margin-top: 5px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e1effa;
+            text-align: center;
+        }
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0077b6;
+            margin: 8px 0;
+        }
+        .stat-card .change {
+            font-size: 12px;
+            color: #2a9d8f;
+            font-weight: bold;
+        }
+        .section-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e1effa;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        .section-box h2 {
+            color: #0077b6;
+            margin-top: 0;
+            border-bottom: 2px solid #f1f8ff;
+            padding-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th {
+            background: #0077b6;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        @media(max-width:800px) {
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width:500px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media print {
+            .header-actions { display: none; }
+            body { background: white; }
+            .container { width: 100%; max-width: 100%; margin: 0; }
+            .section-box { box-shadow: none; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <a href="report.html" class="btn-header">← Back to Reports</a>
+        <button onclick="window.print()" class="btn-header">🖨️ Print Report</button>
+    </div>
+</header>
+<main class="container">
+    <div class="report-header">
+        <h1>Monthly Hospital Operations Report</h1>
+        <p>Operational summary and patient throughput metrics for October 2026</p>
+    </div>
+    <div class="stat-grid">
+        <div class="stat-card">
+            <h3>Registered Patients</h3>
+            <div class="value" id="monthPatients">0</div>
+            <div class="change">↑ 14% vs previous month</div>
+        </div>
+        <div class="stat-card">
+            <h3>Doctor Consultations</h3>
+            <div class="value" id="monthAppointments">0</div>
+            <div class="change">↑ 18% vs previous month</div>
+        </div>
+        <div class="stat-card">
+            <h3>Monthly Billings</h3>
+            <div class="value" id="monthBilling">₹0</div>
+            <div class="change">↑ 12% revenue growth</div>
+        </div>
+        <div class="stat-card">
+            <h3>Active Medical Staff</h3>
+            <div class="value" id="monthStaff">0</div>
+            <div class="change">Fully Staffed</div>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <h2>Monthly Performance Breakdown (Q3 - Q4 2026)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>New Patients</th>
+                    <th>Consultations</th>
+                    <th>Invoiced Amount</th>
+                    <th>Collection Rate</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>October 2026 (Current)</strong></td>
+                    <td id="tableMonthPatients">4</td>
+                    <td id="tableMonthApp">4</td>
+                    <td id="tableMonthBill">₹9,900</td>
+                    <td>94%</td>
+                    <td><span style="background:#e8f5e9; color:#2e7d32; padding:3px 8px; border-radius:4px; font-weight:bold;">Active</span></td>
+                </tr>
+                <tr>
+                    <td><strong>September 2026</strong></td>
+                    <td>142</td>
+                    <td>188</td>
+                    <td>₹2,84,000</td>
+                    <td>96%</td>
+                    <td><span style="background:#e3f2fd; color:#1565c0; padding:3px 8px; border-radius:4px; font-weight:bold;">Closed</span></td>
+                </tr>
+                <tr>
+                    <td><strong>August 2026</strong></td>
+                    <td>128</td>
+                    <td>164</td>
+                    <td>₹2,45,500</td>
+                    <td>92%</td>
+                    <td><span style="background:#e3f2fd; color:#1565c0; padding:3px 8px; border-radius:4px; font-weight:bold;">Closed</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-box">
+        <h2>Recent Appointments for October 2026</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Symptoms</th>
+                </tr>
+            </thead>
+            <tbody id="monthAppointmentsList">
+                <!-- Populated dynamically via JS -->
+            </tbody>
+        </table>
+    </div>
+</main>
+<script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const pCount = (typeof patients !== "undefined") ? patients.length : 0;
+        const aCount = (typeof appointments !== "undefined") ? appointments.length : 0;
+        const sCount = (typeof staffMembers !== "undefined" && typeof doctors !== "undefined") ? (staffMembers.length + doctors.length) : 0;
+        const totalB = (typeof bills !== "undefined") ? bills.reduce((s, b) => s + (parseFloat(b.total) || 0), 0) : 0;
+
+        document.getElementById("monthPatients").textContent = pCount;
+        document.getElementById("monthAppointments").textContent = aCount;
+        document.getElementById("monthBilling").textContent = `₹${totalB.toLocaleString()}`;
+        document.getElementById("monthStaff").textContent = sCount;
+
+        document.getElementById("tableMonthPatients").textContent = pCount;
+        document.getElementById("tableMonthApp").textContent = aCount;
+        document.getElementById("tableMonthBill").textContent = `₹${totalB.toLocaleString()}`;
+
+        const appTable = document.getElementById("monthAppointmentsList");
+        if (appTable && typeof appointments !== "undefined") {
+            appTable.innerHTML = "";
+            appointments.forEach(app => {
+                appTable.innerHTML += `
+                    <tr>
+                        <td><strong>${app.id}</strong></td>
+                        <td>${app.patientName}</td>
+                        <td>${app.doctor}</td>
+                        <td>${app.date}</td>
+                        <td>${app.symptoms}</td>
+                    </tr>
+                `;
+            });
+        }
+    });
+</script>
+</body>
+</html>

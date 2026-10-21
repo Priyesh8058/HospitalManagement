@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-in-One Operations Portal - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #eef6fc;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h2 { margin: 0; }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-links a {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .nav-links a:hover {
+            background: white;
+            color: #0077b6;
+        }
+        .quick-nav {
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .quick-nav a {
+            padding: 8px 16px;
+            background: #0077b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .quick-nav a:hover {
+            background: #005f8f;
+        }
+        .container {
+            width: 90%;
+            max-width: 650px;
+            margin: 35px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e1effa;
+        }
+        h1 {
+            text-align: center;
+            color: #0077b6;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            background: #0077b6;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #005f8f;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h2>🏥 Medicare Hospital - Quick All-in-One Operations</h2>
+    <div class="nav-links">
+        <a href="admin.html">Admin Dashboard</a>
+        <a href="login.html">Login Page</a>
+        <a href="index.html">Main Website</a>
+    </div>
+</header>
+
+<div class="quick-nav">
+    <a href="#patientSection">👤 Patient Registration</a>
+    <a href="#doctorSection">🩺 Doctor Registration</a>
+    <a href="#appointmentSection">📅 Book Appointment</a>
+    <a href="#staffSection">👨‍💼 Add Staff</a>
+    <a href="#paymentSection">💳 Billing & Payment</a>
+</div>
+
+<!-- Patient Section -->
+<div class="container" id="patientSection">
+    <h1>👤 Patient Registration</h1>
+    <form id="patientForm">
+        <label>Patient ID (Optional)</label>
+        <input type="text" id="patientId" placeholder="Auto-generated if left blank">
+        <label>Full Name</label>
+        <input type="text" id="patientName" placeholder="Enter patient name" required>
+        <label>Age</label>
+        <input type="number" id="age" min="1" max="120" placeholder="Enter age" required>
+        <label>Gender</label>
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <label>Phone</label>
+        <input type="tel" id="phone" placeholder="Enter phone number" required>
+        <label>Disease / Chief Complaint</label>
+        <input type="text" id="disease" placeholder="Enter symptoms" required>
+        <label>Address</label>
+        <textarea id="address" placeholder="Enter full address" required></textarea>
+        <button type="submit">Register Patient</button>
+    </form>
+</div>
+
+<!-- Doctor Section -->
+<div class="container" id="doctorSection">
+    <h1>🩺 Doctor Registration</h1>
+    <form id="doctorForm">
+        <label>Doctor ID (Optional)</label>
+        <input type="text" id="doctorId" placeholder="Auto-generated if left blank">
+        <label>Doctor Full Name</label>
+        <input type="text" id="doctorName" placeholder="Enter doctor name" required>
+        <label>Specialization</label>
+        <select id="specialization" required>
+            <option value="">Select Specialization</option>
+            <option>Cardiologist</option>
+            <option>General Physician</option>
+            <option>Orthopedic</option>
+            <option>Dermatologist</option>
+            <option>Neurologist</option>
+            <option>Pediatrician</option>
+            <option>Gynecologist</option>
+            <option>ENT Specialist</option>
+        </select>
+        <label>Department</label>
+        <select id="department" required>
+            <option value="">Select Department</option>
+            <option>Cardiology</option>
+            <option>General Medicine</option>
+            <option>Orthopedics</option>
+            <option>Dermatology</option>
+            <option>Neurology</option>
+            <option>Pediatrics</option>
+            <option>Gynecology</option>
+            <option>ENT</option>
+        </select>
+        <label>Contact Phone</label>
+        <input type="tel" id="doctorContact" placeholder="Enter contact number" required>
+        <label>Availability</label>
+        <select id="availability" required>
+            <option value="">Select Availability</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+        <button type="submit">Add Doctor</button>
+    </form>
+</div>
+
+<!-- Appointment Section -->
+<div class="container" id="appointmentSection">
+    <h1>📅 Book Appointment</h1>
+    <form id="appointmentForm">
+        <label>Appointment ID (Optional)</label>
+        <input type="text" id="appointmentId" placeholder="Auto-generated if left blank">
+        <label>Patient ID</label>
+        <input type="text" id="appointmentPatientId" placeholder="e.g. P001" required>
+        <label>Patient Name</label>
+        <input type="text" id="appointmentPatientName" placeholder="Enter patient name" required>
+        <label>Phone Number</label>
+        <input type="tel" id="appointmentPhone" placeholder="Enter phone" required>
+        <label>Doctor Name</label>
+        <input type="text" id="appointmentDoctor" placeholder="Enter doctor name" required>
+        <label>Appointment Date</label>
+        <input type="date" id="appointmentDate" required>
+        <label>Appointment Time</label>
+        <input type="time" id="appointmentTime" required>
+        <label>Symptoms</label>
+        <textarea id="symptoms" placeholder="Enter symptoms" required></textarea>
+        <button type="submit">Book Appointment</button>
+    </form>
+</div>
+
+<!-- Staff Section -->
+<div class="container" id="staffSection">
+    <h1>👨‍💼 Add Staff</h1>
+    <form id="staffForm">
+        <label>Staff ID (Optional)</label>
+        <input type="text" id="staffId" placeholder="Auto-generated if left blank">
+        <label>Staff Name</label>
+        <input type="text" id="staffName" placeholder="Enter name" required>
+        <label>Role</label>
+        <select id="staffRole" required>
+            <option value="">Select Role</option>
+            <option>Nurse</option>
+            <option>Receptionist</option>
+            <option>Lab Technician</option>
+            <option>Pharmacist</option>
+            <option>Accountant</option>
+            <option>Other</option>
+        </select>
+        <label>Phone Number</label>
+        <input type="tel" id="staffPhone" placeholder="Enter phone" required>
+        <button type="submit">Save Staff Member</button>
+    </form>
+</div>
+
+<!-- Payment Section -->
+<div class="container" id="paymentSection">
+    <h1>💳 Record Payment</h1>
+    <form id="paymentForm">
+        <label>Payment ID (Optional)</label>
+        <input type="text" id="paymentId" placeholder="Auto-generated if left blank">
+        <label>Bill ID</label>
+        <input type="text" id="paymentBillId" placeholder="Enter Bill ID (e.g. B001)" required>
+        <label>Patient ID</label>
+        <input type="text" id="paymentPatientId" placeholder="Enter Patient ID (e.g. P001)" required>
+        <label>Amount (₹)</label>
+        <input type="number" id="paymentAmount" min="0" placeholder="Enter Amount" required>
+        <label>Payment Date</label>
+        <input type="date" id="paymentDate" required>
+        <label>Status</label>
+        <select id="paymentStatus" required>
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+        </select>
+        <button type="submit">Save Payment Record</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

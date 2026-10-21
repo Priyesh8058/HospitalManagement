@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+        }
+        .top-header {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
+        .hospital-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0077b6;
+        }
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e4f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+        .page {
+            padding: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #0077b6;
+            font-weight: bold;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #0077b6;
+            color: white;
+        }
+        .page-title {
+            margin: 10px 0 25px;
+        }
+        .page-title h1 {
+            margin: 0;
+            color: #173f50;
+        }
+        .page-title p {
+            color: #777;
+            margin-top: 5px;
+        }
+        .doctor-form,
+        .doctor-records {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.07);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+        input,
+        select {
+            padding: 12px;
+            border: 1px solid #d5dfe4;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .save-btn {
+            background: #0077b6;
+            color: white;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #005f8f;
+        }
+        .clear-btn {
+            background: #e8eef2;
+            color: #333;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #d8e2e8;
+        }
+        .doctor-records {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th,
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            white-space: nowrap;
+        }
+        th {
+            background: #f1f9fc;
+            color: #0077b6;
+        }
+        .delete-btn {
+            background: #ffe9e9;
+            color: #d62828;
+            border: 1px solid #ffccd5;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #d62828;
+            color: white;
+        }
+        @media(max-width:700px) {
+            .page {
+                padding: 15px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-header {
+                padding: 0 15px;
+            }
+            .hospital-name {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="top-header">
+    <div class="hospital-name">🏥 Medicare Hospital</div>
+    <div class="admin-info">
+        <b class="current-user-badge">Administrator</b>
+        <div class="admin-icon">🩺</div>
+    </div>
+</header>
+<main class="page">
+    <a href="admin.html" class="back-btn dynamic-back">← Back to Dashboard</a>
+    <div class="page-title">
+        <h1>Doctor Management</h1>
+        <p>Register, update, and manage medical staff and specialists.</p>
+    </div>
+    <section class="doctor-form">
+        <h2>Doctor Registration</h2>
+        <form id="doctorForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Doctor ID (Optional)</label>
+                    <input type="text" id="doctorId"
+                           placeholder="Auto-generated if left blank (e.g. D005)">
+                </div>
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" id="doctorName"
+                           placeholder="Enter doctor full name (e.g. Dr. Rajesh Gupta)" required>
+                </div>
+                <div class="form-group">
+                    <label>Specialization</label>
+                    <select id="specialization" required>
+                        <option value="">Select Specialization</option>
+                        <option>Cardiologist</option>
+                        <option>General Physician</option>
+                        <option>Orthopedic</option>
+                        <option>Dermatologist</option>
+                        <option>Neurologist</option>
+                        <option>Pediatrician</option>
+                        <option>Gynecologist</option>
+                        <option>ENT Specialist</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option>Cardiology</option>
+                        <option>General Medicine</option>
+                        <option>Orthopedics</option>
+                        <option>Dermatology</option>
+                        <option>Neurology</option>
+                        <option>Pediatrics</option>
+                        <option>Gynecology</option>
+                        <option>ENT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="tel" id="doctorContact"
+                           placeholder="Enter 10-digit contact number"
+                           maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label>Availability</label>
+                    <select id="availability" required>
+                        <option value="">Select Availability</option>
+                        <option value="Available">Available</option>
+                        <option value="Not Available">Not Available</option>
+                    </select>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="save-btn">
+                    Save Doctor
+                </button>
+                <button type="button" class="clear-btn"
+                        onclick="clearForm()">
+                    Clear Form
+                </button>
+            </div>
+        </form>
+    </section>
+    <section class="doctor-records">
+        <h2>Doctor Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Doctor ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Department</th>
+                    <th>Contact</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="doctorTable"></tbody>
+        </table>
+    </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

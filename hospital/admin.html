@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #0083b0;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            background-color: #0083b0;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .menu a:hover {
+            background-color: #00b4db;
+        }
+
+        .logout {
+            margin-top: 25px;
+            background-color: #d32f2f !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Admin Panel</h1>
+        <p><b>Admin has full access to the Hospital Management System.</b></p>
+        <div class="menu">
+
+            <a href="patient.html">Patient Management</a>
+            <a href="doctor.html">Doctor Management</a>
+            <a href="staff.html">Staff Management</a>
+            <a href="payment.html">Billing / Payment</a>
+            <a href="index.html" class="logout" onclick="logout()">Logout</a>
+        </div>
+    </div>
+    <script>
+        function logout() {
+            localStorage.removeItem("role");
+        }
+    </script>
+</body>
+</html>

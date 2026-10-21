@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Billing System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #e3f2fd;
+        }
+
+        .box {
+            width: 400px;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px gray;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #0077b6;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            background: #0077b6;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>Hospital Billing</h1>
+    <h2>Generate Bill</h2>
+    <form id="billForm">
+        <label>Bill ID</label>
+        <input type="number" id="billId" required>
+        <label>Patient ID</label>
+        <input type="number" id="patientId" required>
+        <label>Patient Name</label>
+        <input type="text" id="patientName" required>
+        <label>Treatment Charges</label>
+        <input type="number" id="treatment" required>
+        <label>Doctor Charges</label>
+        <input type="number" id="doctor" required>
+        <button type="submit">Generate Bill</button>
+    </form>
+    <div id="result">
+        <h2>Bill Details</h2>
+        <p>Bill ID: <span id="showBill"></span></p>
+        <p>Patient ID: <span id="showPatient"></span></p>
+        <p>Patient Name: <span id="showName"></span></p>
+        <p>Treatment Charges: ₹<span id="showTreatment"></span></p>
+        <p>Doctor Charges: ₹<span id="showDoctor"></span></p>
+        <h3>Total Amount: ₹<span id="showTotal"></span></h3>
+    </div>
+</div>
+<script>
+    document.getElementById("billForm").onsubmit = function(event) {
+        event.preventDefault();
+        let bill = document.getElementById("billId").value;
+        let patient = document.getElementById("patientId").value;
+        let name = document.getElementById("patientName").value;
+        let treatment = Number(document.getElementById("treatment").value);
+        let doctor = Number(document.getElementById("doctor").value);
+        let total = treatment + doctor;
+        document.getElementById("showBill").innerText = bill;
+        document.getElementById("showPatient").innerText = patient;
+        document.getElementById("showName").innerText = name;
+        document.getElementById("showTreatment").innerText = treatment;
+        document.getElementById("showDoctor").innerText = doctor;
+        document.getElementById("showTotal").innerText = total;
+        document.getElementById("result").style.display = "block";
+    };
+</script>
+</body>
+</html>

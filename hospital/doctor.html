@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Panel</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .doctor-panel {
+            width: 500px;
+            margin: 40px auto 20px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .doctor-panel h1 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            padding: 12px 30px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #b71c1c;
+            transform: scale(1.05);
+        }
+
+        .container {
+            width: 400px;
+            margin: 30px auto 50px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h1 {
+            text-align: center;
+            color: #0077b6;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 2px solid #bde0fe;
+            border-radius: 6px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background: #023e8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="doctor-panel">
+        <h1>Welcome to Doctor Panel</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <div class="container">
+        <h1>Doctor Management</h1>
+        <form action="DoctorServlet" method="post">
+            <label>Doctor ID</label>
+            <input type="number" name="doctor_id" required>
+            <label>Name</label>
+            <input type="text" name="name" required>
+            <label>Specialization</label>
+            <input type="text" name="specialization" required>
+            <label>Department</label>
+            <input type="text" name="department" required>
+            <label>Contact</label>
+            <input type="text" name="contact" required>
+            <label>Availability</label>
+            <select name="availability" required>
+                <option value="">Select Availability</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <button type="submit">Add Doctor</button>
+        </form>
+    </div>
+    <script>
+        function logout() {
+            localStorage.removeItem("role");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

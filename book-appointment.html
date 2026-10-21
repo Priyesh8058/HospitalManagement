@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Medicare Hospital (No Login Required)</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f4fa 100%);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 16px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h2 { margin: 0; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 850px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .page-badge {
+            background: #e0f2fe;
+            color: #0284c7;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .intro h1 {
+            color: #0077b6;
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+        .intro p {
+            color: #555;
+            font-size: 16px;
+            margin: 0;
+        }
+        footer {
+            background: #063b52;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="nav-links">
+        <a href="index.html">← Home</a>
+        <a href="login.html">Staff Login</a>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="intro">
+        <span class="page-badge">Direct Online Booking</span>
+        <h1>Schedule a Doctor Consultation</h1>
+        <p>No account creation, login, or password required. Book your slot in seconds.</p>
+    </div>
+
+    <div class="booking-container">
+        <form id="publicBookingForm">
+            <div class="booking-form-grid">
+                <div class="booking-field">
+                    <label>Full Name *</label>
+                    <input type="text" id="pubPatientName" placeholder="Enter patient full name" required>
+                </div>
+                <div class="booking-field">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="pubPhone" placeholder="Enter 10-digit mobile number" maxlength="10" required>
+                </div>
+                <div class="booking-field">
+                    <label>Age (Optional)</label>
+                    <input type="number" id="pubAge" placeholder="Enter age" min="1" max="120">
+                </div>
+                <div class="booking-field">
+                    <label>Gender (Optional)</label>
+                    <select id="pubGender">
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="booking-field full">
+                    <label>Select Specialist Doctor *</label>
+                    <select id="pubDoctor" required>
+                        <option value="">Select Doctor & Department</option>
+                        <option value="Dr. Rahul Sharma - Cardiologist (Cardiology)">Dr. Rahul Sharma - Cardiologist (Cardiology)</option>
+                        <option value="Dr. Priya Singh - General Physician (General Medicine)">Dr. Priya Singh - General Physician (General Medicine)</option>
+                        <option value="Dr. Amit Kumar - Orthopedic (Orthopedics)">Dr. Amit Kumar - Orthopedic (Orthopedics)</option>
+                        <option value="Dr. Sunita Gupta - Dermatologist (Dermatology)">Dr. Sunita Gupta - Dermatologist (Dermatology)</option>
+                    </select>
+                </div>
+                <div class="booking-field">
+                    <label>Appointment Date *</label>
+                    <input type="date" id="pubDate" required>
+                </div>
+                <div class="booking-field">
+                    <label>Preferred Time Slot *</label>
+                    <input type="time" id="pubTime" value="10:30" required>
+                </div>
+                <div class="booking-field full">
+                    <label>Symptoms or Health Issue *</label>
+                    <textarea id="pubSymptoms" placeholder="Describe the health concern or purpose of your visit" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="booking-submit-btn">
+                ✅ Confirm & Book Appointment (Instant Confirmation)
+            </button>
+        </form>
+
+        <!-- Instant Booking Confirmation Ticket -->
+        <div id="bookingConfirmationBox" class="booking-confirmation">
+            <div style="font-size: 48px; margin-bottom: 8px;">🎉</div>
+            <h3>Appointment Confirmed!</h3>
+            <p>Your appointment has been registered directly in Medicare Hospital. No login is needed!</p>
+
+            <div class="ticket-details">
+                <div class="ticket-row">
+                    <span>Appointment ID:</span>
+                    <span class="ticket-id" id="confAppointmentId">A005</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Patient Name:</span>
+                    <strong id="confPatientName">Anjali Sharma</strong>
+                </div>
+                <div class="ticket-row">
+                    <span>Doctor / Department:</span>
+                    <span id="confDoctor">Dr. Priya Singh</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Date & Time:</span>
+                    <strong id="confDateTime">2026-10-22 at 10:30 AM</strong>
+                </div>
+                <div class="ticket-row">
+                    <span>Contact Phone:</span>
+                    <span id="confPhone">9876543210</span>
+                </div>
+                <div class="ticket-row">
+                    <span>Status:</span>
+                    <span style="background: #e8f5e9; color: #2e7d32; padding: 2px 8px; border-radius: 4px; font-weight: bold;">Confirmed</span>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: #555;">
+                ℹ️ Please keep this <b>Appointment ID</b> handy when you arrive. You may print this confirmation slip or show it at the reception.
+            </p>
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button type="button" onclick="window.print()" class="primary-btn" style="border: none; cursor: pointer; padding: 10px 20px;">
+                    🖨️ Print Appointment Slip
+                </button>
+                <button type="button" onclick="bookAnotherAppointment()" class="secondary-btn" style="border: 1px solid #0077b6; cursor: pointer; padding: 10px 20px;">
+                    + Book Another Appointment
+                </button>
+                <a href="index.html" class="secondary-btn" style="border: 1px solid #777; color: #555; text-decoration: none; padding: 10px 20px;">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2026 Medicare Hospital Management System. All Rights Reserved.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

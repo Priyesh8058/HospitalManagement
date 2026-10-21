@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+        }
+        .top-header {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
+        .hospital-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0077b6;
+        }
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e4f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+        .page {
+            padding: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #0077b6;
+            font-weight: bold;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #0077b6;
+            color: white;
+        }
+        .page-title h1 {
+            margin: 0;
+            color: #173f50;
+        }
+        .page-title p {
+            color: #777;
+            margin-top: 5px;
+        }
+        .patient-form,
+        .patient-records {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.07);
+            margin-bottom: 30px;
+        }
+        .patient-form h2,
+        .patient-records h2 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+        input,
+        select,
+        textarea {
+            padding: 12px;
+            border: 1px solid #d5dfe4;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .full-width {
+            grid-column: 1/3;
+        }
+        .buttons {
+            margin-top: 25px;
+        }
+        button {
+            padding: 11px 22px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .save-btn {
+            background: #0077b6;
+            color: white;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #005f8f;
+        }
+        .clear-btn {
+            background: #e8eef2;
+            color: #333;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #d8e2e8;
+        }
+        .patient-records {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background: #f1f9fc;
+            color: #0077b6;
+        }
+        .delete-btn {
+            background: #ffe9e9;
+            color: #d62828;
+            border: 1px solid #ffccd5;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #d62828;
+            color: white;
+        }
+        @media(max-width:700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: 1;
+            }
+            .page {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="top-header">
+    <div class="hospital-name">
+        🏥 Medicare Hospital
+    </div>
+    <div class="admin-info">
+        <b class="current-user-badge">Administrator</b>
+        <div class="admin-icon">👤</div>
+    </div>
+</header>
+<main class="page">
+    <a href="admin.html" class="back-btn dynamic-back">
+        ← Back to Dashboard
+    </a>
+    <div class="page-title">
+        <h1>Patient Management</h1>
+        <p>Register new patients and manage medical records.</p>
+    </div>
+    <section class="patient-form">
+        <h2>Patient Registration</h2>
+        <form id="patientForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Patient ID (Optional)</label>
+                    <input type="text"
+                           id="patientId"
+                           placeholder="Auto-generated if left blank (e.g. P005)">
+                </div>
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text"
+                           id="patientName"
+                           name="name"
+                           placeholder="Enter patient full name"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number"
+                           id="age"
+                           name="age"
+                           placeholder="Enter age"
+                           min="1"
+                           max="120"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="gender"
+                            name="gender"
+                            required>
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel"
+                           id="phone"
+                           name="phone"
+                           placeholder="Enter 10-digit phone number"
+                           maxlength="10"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Disease / Problem</label>
+                    <input type="text"
+                           id="disease"
+                           name="disease"
+                           placeholder="Enter disease or primary complaint"
+                           required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Address</label>
+                    <textarea id="address"
+                              name="address"
+                              placeholder="Enter patient full residential address"
+                              required></textarea>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit"
+                        class="save-btn">
+                    Save Patient
+                </button>
+                <button type="button"
+                        class="clear-btn"
+                        onclick="clearForm()">
+                    Clear Form
+                </button>
+            </div>
+        </form>
+    </section>
+    <section class="patient-records">
+        <h2>Patient Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Disease</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="patientTable">
+            </tbody>
+        </table>
+    </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

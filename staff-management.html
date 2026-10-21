@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8ff;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .back-btn {
+            background: white;
+            color: #0077b6;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #005f8f;
+            color: white;
+        }
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 30px auto;
+        }
+        .title {
+            text-align: center;
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .form-box,
+        .table-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            border: 1px solid #e1effa;
+            margin-top: 25px;
+        }
+        .table-box h2 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+        input,
+        select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 25px;
+        }
+        button {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .save-btn {
+            background: #0077b6;
+            color: white;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #005f8f;
+        }
+        .clear-btn {
+            background: #e8eef2;
+            color: #333;
+            margin-left: 10px;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #d8e2e8;
+        }
+        .table-box {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #0077b6;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        .delete-btn {
+            background: #ffe9e9;
+            color: #d62828;
+            border: 1px solid #ffccd5;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #d62828;
+            color: white;
+        }
+        @media(max-width:700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <span class="user-tag current-user-badge">Administrator</span>
+        <a href="admin.html" class="back-btn dynamic-back">
+            ← Back to Dashboard
+        </a>
+    </div>
+</header>
+<div class="container">
+    <h1 class="title">Staff Management</h1>
+    <div class="form-box">
+        <form id="staffForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Staff ID (Optional)</label>
+                    <input type="text" id="staffId"
+                           placeholder="Auto-generated if left blank (e.g. S005)">
+                </div>
+                <div class="form-group">
+                    <label>Staff Full Name</label>
+                    <input type="text" id="staffName"
+                           placeholder="Enter Staff Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Staff Role / Designation</label>
+                    <select id="staffRole" required>
+                        <option value="">Select Role</option>
+                        <option>Nurse</option>
+                        <option>Receptionist</option>
+                        <option>Lab Technician</option>
+                        <option>Pharmacist</option>
+                        <option>Accountant</option>
+                        <option>Ward Staff</option>
+                        <option>Security Supervisor</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="staffPhone"
+                           placeholder="Enter 10-digit Phone Number"
+                           maxlength="10" required>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="save-btn">
+                    Save Staff
+                </button>
+                <button type="button" class="clear-btn"
+                        onclick="clearForm()">
+                    Clear Form
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="table-box">
+        <h2>Hospital Staff Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Staff ID</th>
+                    <th>Staff Name</th>
+                    <th>Role</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="staffTable"></tbody>
+        </table>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

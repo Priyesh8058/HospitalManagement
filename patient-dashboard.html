@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - Medicare Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8ff;
+        }
+        .header {
+            background: #0077b6;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .logout-btn {
+            background: white;
+            color: #0077b6;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .logout-btn:hover {
+            background: #e3f2fd;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .welcome h1 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .welcome p {
+            color: #555;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .card,
+        .details-box,
+        .table-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            border: 1px solid #e1effa;
+        }
+        .card {
+            text-align: center;
+        }
+        .icon {
+            font-size: 45px;
+        }
+        .card h2,
+        .details-box h2,
+        .table-box h2 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+        .card p {
+            color: #555;
+        }
+        .btn {
+            display: inline-block;
+            background: #0077b6;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #005f8f;
+        }
+        .details-box,
+        .table-box {
+            margin-top: 30px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .detail {
+            background: #f4f9fd;
+            padding: 15px;
+            border-radius: 7px;
+            border-left: 4px solid #0077b6;
+        }
+        .detail strong {
+            color: #0077b6;
+            display: inline-block;
+            min-width: 110px;
+        }
+        .table-box {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #0077b6;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .book-banner {
+            margin-top: 25px;
+            background: linear-gradient(135deg, #0077b6, #00a6a6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .book-banner h3 {
+            margin: 0 0 5px;
+        }
+        .book-banner p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .book-banner-btn {
+            background: white;
+            color: #0077b6;
+            padding: 11px 22px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        @media(max-width:800px) {
+            .card-grid,
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            .book-banner {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h2>🏥 Medicare Hospital</h2>
+    <div class="header-actions">
+        <span class="user-tag current-user-badge">Patient</span>
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+    </div>
+</header>
+<div class="container">
+    <div class="welcome">
+        <h1>Patient Portal</h1>
+        <p>Access your health records, scheduled doctor consultations, and billing statements.</p>
+    </div>
+
+    <div class="book-banner">
+        <div>
+            <h3>Need to consult a specialist?</h3>
+            <p>Schedule your doctor appointment online quickly and easily.</p>
+        </div>
+        <a href="book-appointment.html" class="book-banner-btn">+ Book Appointment</a>
+    </div>
+
+    <div class="card-grid" style="margin-top: 25px;">
+        <div class="card">
+            <div class="icon">👤</div>
+            <h2>My Profile</h2>
+            <p>View your personal contact and medical profile.</p>
+            <a href="#profile" class="btn">View Profile</a>
+        </div>
+        <div class="card">
+            <div class="icon">📅</div>
+            <h2>Appointments</h2>
+            <p>Check your upcoming and past doctor visits.</p>
+            <a href="#appointments" class="btn">View Appointments</a>
+        </div>
+        <div class="card">
+            <div class="icon">💳</div>
+            <h2>My Bills</h2>
+            <p>Review hospital invoices and billing history.</p>
+            <a href="#bills" class="btn">View Bills</a>
+        </div>
+    </div>
+
+    <div class="details-box" id="profile">
+        <h2>My Patient Details</h2>
+        <div class="details-grid">
+            <div class="detail">
+                <strong>Patient ID:</strong> <span id="patientProfileId">P001</span>
+            </div>
+            <div class="detail">
+                <strong>Name:</strong> <span id="patientProfileName">Rahul Kumar</span>
+            </div>
+            <div class="detail">
+                <strong>Age:</strong> <span id="patientProfileAge">25</span>
+            </div>
+            <div class="detail">
+                <strong>Gender:</strong> <span id="patientProfileGender">Male</span>
+            </div>
+            <div class="detail">
+                <strong>Phone:</strong> <span id="patientProfilePhone">9876543210</span>
+            </div>
+            <div class="detail">
+                <strong>Disease / Notes:</strong> <span id="patientProfileDisease">Fever</span>
+            </div>
+            <div class="detail" style="grid-column: 1/-1;">
+                <strong>Address:</strong> <span id="patientProfileAddress">New Delhi, India</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-box" id="appointments">
+        <h2>My Scheduled Appointments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Symptoms</th>
+                </tr>
+            </thead>
+            <tbody id="patientAppointmentsTable">
+                <!-- Dynamically populated via script.js -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-box" id="bills">
+        <h2>My Invoices & Bills</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Patient ID</th>
+                    <th>Treatment Charges</th>
+                    <th>Doctor Charges</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="patientBillsTable">
+                <!-- Dynamically populated via script.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
